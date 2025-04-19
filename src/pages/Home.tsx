@@ -1,9 +1,10 @@
-import FormHome from "./components/FormHome";
-import { TableHover } from "./components/TableHover";
+import FormHome from "../components/FormHome";
+import { TableHover } from "../components/TableHover";
+import { HomeCarousel } from "../components/HomeCarousel";
 
 export default function Home() {
   return (
-    <main className="min-h-[calc(100vh-4rem)] bg-gradient-to-r from-blue-800 to-blue-400 px-4 pt-10 md:pt-20 flex flex-col items-center">
+    <main className="flex min-h-[calc(100vh-4rem)] flex-col items-center bg-gradient-to-r from-blue-800 to-blue-400 px-4 pt-10 md:pt-20">
       {/* Top content wrapper */}
       <div className="flex w-full max-w-6xl flex-col items-start justify-between gap-12 md:flex-row">
         {/* Left Info */}
@@ -38,14 +39,9 @@ export default function Home() {
           <FormHome />
         </div>
       </div>
-
-      {/* Table below */}
       
-      <div className="w-full max-w-6xl mt-12">
-        <h2 className="text-center text-3xl font-semibold text-white mb-6">
-          Review Spending Habits Easily
-        </h2>
-        <TableHover />
+      <div >
+        <HomeCarousel />
       </div>
     </main>
   );

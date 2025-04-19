@@ -4,7 +4,7 @@ import { Button, Checkbox, Label, TextInput } from "flowbite-react";
 
 const FormHome = () => {
   return (
-    <form className="flex w-full max-w-md flex-col gap-4 p-6 bg-white rounded-lg shadow-lg">
+    <form className="flex w-full max-w-md flex-col gap-4 p-6 bg-amber-400 rounded-lg shadow-lg">
       <div>
         <Label htmlFor="email2" className="mb-2 block">
           Your email
