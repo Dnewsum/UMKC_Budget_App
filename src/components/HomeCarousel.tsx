@@ -1,29 +1,30 @@
 import { Carousel } from "flowbite-react";
 
-import budgetComputer from "../pic/budgetcomputer.png";
-import budgetHand from "../pic/budgethand.png";
-import bugetphone from "../pic/budgetphone.png";
-import exampleGraph from "../pic/examplegraph.png";
-
 export function HomeCarousel() {
-  const slides = [
-    { src: budgetComputer, alt: "Budget on computer" },
-    { src: budgetHand, alt: "Budget by hand" },
-    { src: bugetphone, alt: "Budget on phone" },
-    { src: exampleGraph, alt: "Example graph" },
-  ];
-
   return (
-    <div className="h-56 sm:h-64 xl:h-80 2xl:h-96">
+    
+    <div className="w-66 mx-22  sm:h-66  overflow-hidden">
       <Carousel>
-        {slides.map((img, i) => (
-          <img
-            key={i}
-            src={img.src}
-            alt={img.alt}
-            className="h-full w-full object-cover"
-          />
-        ))}
+        <img
+          src="/pic/budgetcomputer.png"
+          alt="Budget on computer"
+          
+        />
+        <img
+          src="/pic/budgethand.png"
+          alt="Budget by hand"
+          
+        />
+        <img
+          src="/pic/budgetphone.png"
+          alt="Budget on phone"
+          
+        />
+        <img
+          src="/pic/examplegraph.png"
+          alt="Example graph"
+          
+        />
       </Carousel>
     </div>
   );

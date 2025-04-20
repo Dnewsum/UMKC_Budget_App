@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const LoginPage: React.FC = () => {
     return (
@@ -54,12 +55,14 @@ const LoginPage: React.FC = () => {
                             Forgot password?
                         </a>
                     </div>
+                    <Link to="/dashboard">
                     <button
                         type="submit"
                         className="w-full rounded-lg bg-blue-800 px-4 py-2 text-white hover:bg-blue-900 focus:ring focus:ring-blue-300 focus:outline-none"
                     >
                         Login
                     </button>
+                    </Link>
                 </form>
                 <p className="text-center text-sm text-gray-600">
                     Don't have an account?{" "}
