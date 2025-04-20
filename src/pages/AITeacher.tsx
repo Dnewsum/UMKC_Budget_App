@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ChatBox from "../components/ChatBox";
 
 const AITeacher: React.FC = () => {
   const [messages, setMessages] = useState<{ sender: string; text: string }[]>(
@@ -37,6 +38,7 @@ const AITeacher: React.FC = () => {
   return (
     <div className="p-6 font-sans">
       <h1 className="mb-4 text-2xl font-bold">AI Teacher</h1>
+      <ChatBox />
       <div className="mb-4 h-96 overflow-y-scroll rounded-lg border border-gray-300 p-4">
         {messages.map((message, index) => (
           <div

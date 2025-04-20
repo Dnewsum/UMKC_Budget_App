@@ -1,9 +1,5 @@
-// src/components/NavbarHome.tsx
 import {
   Button,
-  Dropdown,
-  DropdownDivider,
-  DropdownItem,
   Navbar,
   NavbarBrand,
   NavbarCollapse,
@@ -16,12 +12,13 @@ export function NavbarHome() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // toggle when on exactly /dashboard
-  const inDashboard = location.pathname === "/dashboard";
+  // Detect dashboard route
+  const inDashboard = location.pathname.startsWith("/dashboard");
 
   const handleSignOut = () => {
-    // ← clear your auth state here (e.g. localStorage.removeItem)
-    navigate("/"); // send them back home
+    // Clear auth state (customize as needed)
+    localStorage.removeItem("token");
+    navigate("/");
   };
 
   return (
@@ -30,41 +27,77 @@ export function NavbarHome() {
       rounded
       className="bg-gradient-to-r from-yellow-300 to-amber-500 px-4 py-2"
     >
-      {/* Logo */}
-      <NavbarBrand as={Link} to="/">
+      {/* Logo + Optional Label */}
+      <NavbarBrand as={Link} to={inDashboard ? "/dashboard" : "/"}>
         <img
           src="/MintConditionLogo.png"
           className="mr-4 ml-2.5 h-18.5"
           alt="Mint Condition Logo"
         />
+       
       </NavbarBrand>
 
-      {/* Right Side */}
+      {/* Right side nav controls */}
       <div className="flex w-full items-center justify-end gap-3 md:order-2 md:w-auto">
         <NavbarToggle />
 
         <NavbarCollapse className="hidden md:flex md:flex-row md:items-center md:gap-6">
-          <NavbarLink as={Link} to="/" className="text-base font-medium hover:text-blue-900">
+          {/* Home always shows */}
+          <NavbarLink
+            as={Link}
+            to="/"
+            className="text-base font-medium hover:text-blue-900"
+          >
             Home
           </NavbarLink>
 
-          <Dropdown
-            arrowIcon
-            inline
-            label={<span className="text-base font-medium hover:text-blue-900">Services</span>}
-          >
-            <DropdownItem as={Link} to="/servicesAI">AI Teacher</DropdownItem>
-            <DropdownItem as={Link} to="/ServiceBudget">Budget Visualization</DropdownItem>
-            <DropdownItem as={Link} to="/servicesExpense">Detailed Tables and More...</DropdownItem>
-            <DropdownDivider />
-          </Dropdown>
+          {/* Show these links only when not on dashboard */}
+         
+            <>
+              <NavbarLink
+                as={Link}
+                to="/servicesAI"
+                className="text-base font-medium hover:text-blue-900"
+              >
+                AI Teacher
+              </NavbarLink>
 
-          <NavbarLink as={Link} to="/about" className="text-base font-medium hover:text-blue-900">
-            About
-          </NavbarLink>
+              <NavbarLink
+                as={Link}
+                to="/ServiceBudget"
+                className="text-base font-medium hover:text-blue-900"
+              >
+                Visualization
+              </NavbarLink>
+
+              <NavbarLink
+                as={Link}
+                to="/servicesExpense"
+                className="text-base font-medium hover:text-blue-900"
+              >
+                Breakdown
+              </NavbarLink>
+              {inDashboard ? (
+                <NavbarLink
+                as={Link}
+                to="/"
+                className="text-base font-medium hover:text-blue-900"
+              >
+                
+              </NavbarLink>
+              ) :(
+              <NavbarLink
+                as={Link}
+                to="/about"
+                className="text-base font-medium hover:text-blue-900"
+              >
+                About
+              </NavbarLink>)}
+            </>
+          
         </NavbarCollapse>
 
-        {/* ← conditional button */}
+        {/* Auth Button */}
         {inDashboard ? (
           <Button
             onClick={handleSignOut}

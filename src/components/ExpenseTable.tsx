@@ -1,6 +1,8 @@
 import React from 'react'
 import { Table } from 'flowbite-react'
 
+
+
 export interface Expense {
   id: number
   price: number
@@ -67,6 +69,7 @@ const ExpenseTable: React.FC = () => (
         ))}
       </tbody>
     </Table>
+       
   </div>
 )
 

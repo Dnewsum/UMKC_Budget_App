@@ -1,13 +1,27 @@
 import React from "react";
-
+import ChatBox from "../components/ChatBox";
+import Gauge from "../components/Gauge";
 const DashboardHome: React.FC = () => {
     return (
+        
         <div className="min-h-screen bg-gradient-to-r from-blue-800 to-blue-400 flex flex-col items-center pt-16">
-            <header className="flex w-full max-w-5xl px-4">
-                <div className="w-1/2 flex flex-col  items-start">
+            <header className="flex w-full px-4">
+                <div className="w-auto flex flex-col  items-start">
                     <h1 className="text-4xl font-bold text-gray-800">Welcome back, (Username)!</h1>
-            
+                   
+                    <div className="space-y-8 mr-15 p-6">
+      <section className="text-6xl">Dashboard</section>
+        
+        <Gauge />
+        <div className="">
+      <h1 className="text-2xl font-bold mb-4">Ask the Budget AI</h1>
+      <ChatBox />
+    </div>
+     
+    </div>
+    <div/>
                 </div>
+             
                 <div className="w-1/2 flex flex-col items-center bg-amber-400 p-6 rounded-xl shadow-lg border border-gray-200 mb-6 ">
                     <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-blue-400 shadow mb-4 flex items-center justify-center bg-gray-100">
                         <img

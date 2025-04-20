@@ -9,6 +9,7 @@ import LoginPage from "./pages/LoginPage.tsx";
 import ExpenseTable from "./pages/ExpenseTablePage.tsx";
 import "./index.css";
 
+
 import { NavbarHome } from "./components/NavbarHome.tsx";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import About from "./pages/About.tsx";
