@@ -1,11 +1,19 @@
 import FormHome from "../components/FormHome";
-import { TableHover } from "../components/TableHover";
+import HeroMockup from "../components/HeroMockup";
+
 
 
 export default function Home() {
   return (
-    <main className="flex min-h-[calc(100vh-4rem)] flex-col items-center bg-gradient-to-r from-blue-800 to-blue-400 px-4 pt-10 md:pt-20">
+    <main className="flex min-h-[calc(100vh-4rem)] flex-col items-center bg-gradient-to-r from-blue-800 to-blue-400 px-4 pt-10 md:pt-10">
       {/* Top content wrapper */}
+      <h1 className="text-center text-5xl text-white font-extrabold mb-4 ">
+        Manage Your Money Like a Pro
+        </h1>
+      <h2 className="text-center text-2xl text-white font-semibold mb-auto">
+        Your Personal Finance Assistant
+        </h2>
+      <div className="max-w-1/2 mb-11">  <HeroMockup/> </div>
       <div className="flex w-full max-w-6xl flex-col items-start justify-between gap-12 md:flex-row">
       {/* Left Info */}
       <div className="max-w-md space-y-4 text-white md:w-1/2">
