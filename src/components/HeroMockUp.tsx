@@ -7,7 +7,7 @@
             <img
             src="/laptopEmpty.png"
             alt="Laptop mockup"
-            className="w-full block"
+            className="w-full block rounded-lg"
             />
 
             {/* 2. Looping video, absolutely positioned */}
@@ -23,7 +23,9 @@
                 top-[5.5%] left-[16.1%] 
                 w-[70%] h-[71%]
                 object-cover
-                rounded-sm
+                rounded-md
+                
+                
             "
             />
         </div>

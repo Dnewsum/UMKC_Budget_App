@@ -6,7 +6,6 @@ import DashboardHome from "./pages/DashboardHome.tsx";
 import AITeacher from "./pages/AITeacher.tsx";
 import SpendingBreakdown from "./pages/SpendingBreakdown.tsx";
 import LoginPage from "./pages/LoginPage.tsx";
-import ExpenseTable from "./pages/ExpenseTablePage.tsx";
 import "./index.css";
 
 
@@ -17,7 +16,8 @@ import ServiceAI from "./pages/ServiceAI.tsx";
 import ServicesExpense from "./pages/SerivcesExpense.tsx";
 import ExpenseTablePage from "./pages/ExpenseTablePage.tsx";
 import FlowbiteChartsPage from "./pages/ServiceBudget.tsx";
-
+import { FooterHome } from "./components/FooterHome.tsx";
+import SettingsPage from "./pages/settings.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -35,7 +35,9 @@ createRoot(document.getElementById("root")!).render(
         <Route path="/servicesExpense" element={<ServicesExpense />} />
         <Route path="/ServiceBudget" element={<FlowbiteChartsPage />} />
         <Route path="*" element={<div>404 Not Found</div>} />
+       <Route path="/settings" element={<SettingsPage/>} />
       </Routes>
+      <FooterHome />
     </Router>
-  </StrictMode>,
+  </StrictMode>
 );

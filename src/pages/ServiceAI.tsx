@@ -21,7 +21,7 @@ const ServiceAI: React.FC = () => {
         {/* Image/Illustration */}
         <div className="flex-shrink-0">
           <img
-            src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/ai-teacher.svg"
+            src="/robothead.png"
             alt="AI Teacher"
             className="w-48 h-48 object-contain"
           />
