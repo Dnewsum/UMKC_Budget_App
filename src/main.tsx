@@ -18,6 +18,7 @@ import ExpenseTablePage from "./pages/ExpenseTablePage.tsx";
 import FlowbiteChartsPage from "./pages/ServiceBudget.tsx";
 import { FooterHome } from "./components/FooterHome.tsx";
 import SettingsPage from "./pages/settings.tsx";
+import SignUp from "./pages/SignUp.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -36,6 +37,7 @@ createRoot(document.getElementById("root")!).render(
         <Route path="/ServiceBudget" element={<FlowbiteChartsPage />} />
         <Route path="*" element={<div>404 Not Found</div>} />
        <Route path="/settings" element={<SettingsPage/>} />
+       <Route path="/signup" element={<SignUp/>} />
       </Routes>
       <FooterHome />
     </Router>

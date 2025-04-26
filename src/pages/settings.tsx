@@ -1,3 +1,4 @@
+import { FileInput, HelperText } from "flowbite-react";
 import React from "react";
 
 const SettingsPage: React.FC = () => {
@@ -7,10 +8,16 @@ const SettingsPage: React.FC = () => {
                 <h1 className="text-4xl font-bold text-gray-100">Settings</h1>
 
                 <form className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {/* Avatar Upload */}
+                            <div>
+                              <FileInput id="avatar-upload" />
+                              <HelperText className="mt-1">Optional. JPG or PNG, max 2MB.</HelperText>
+                            </div>
                     {/* Profile Settings */}
                     <section className="bg-amber-400 p-6 rounded-lg shadow-md space-y-4">
                         <h2 className="text-2xl font-semibold text-gray-100">Profile</h2>
                         <div>
+                            
                             <label className="block text-white font-medium">Full Name</label>
                             <input
                                 type="text"
