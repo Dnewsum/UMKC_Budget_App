@@ -36,7 +36,7 @@ const SpendingBreakdown: React.FC = () => {
             </div>
 
             {/* Spending Breakdown Table */}
-            <h2 className="text-3xl font-bold mb-2 text-amber-400 text-center mb-8">Clean Budget Modern Tools and Much More!</h2>
+            <h2 className="text-3xl font-bold mb-2 text-amber-400 text-center ">Clean Budget Modern Tools and Much More!</h2>
             <div className="bg-white shadow-md rounded-lg p-3">
                 
                 <h2 className="text-lg font-semibold text-center mb-2">Spending Breakdown</h2>
