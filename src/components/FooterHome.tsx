@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 export function FooterHome() {
   return (
-    <Footer container className="bg-gradient-to-r from-yellow-300 to-amber-500 px-4 py-6 mt-20">
+    <Footer container className="bg-gradient-to-r from-yellow-300 to-amber-500 px-4 py-6 mt-100">
       <div className="w-full max-w-screen-xl mx-auto flex flex-col items-center md:flex-row md:justify-between">
         <FooterCopyright
           href="/"
