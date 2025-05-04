@@ -1,0 +1,15 @@
+@keyframes auraPulse {
+    0%, 100% {
+      transform: scale(1);
+      opacity: .6;
+    }
+    50% {
+      transform: scale(1.05);
+      opacity: 1.8;
+    }
+  }
+  
+  .animate-auraPulse {
+    animation: auraPulse 6s ease-in-out infinite;
+  }
+  

@@ -1,9 +1,18 @@
 import React, { useEffect, useState } from "react";
-import Gauge from "../components/Gauge";
+import RadialGaugeRanges from "../components/Gauge";
+import { getBudgetStatus, getAuraGradient } from "../components/AuraUtility";
+import "../Aura.css"; // Import your aura CSS styles
+import { ToggleSwitch } from "flowbite-react";
+
 
 const DashboardHome: React.FC = () => {
   const [username, setUsername] = useState<string>("User");
   const [fullName, setFullName] = useState<string>("Full Name");
+  const userBudget = 2200;
+  const budgetLimit = 5000;
+  const status = getBudgetStatus(userBudget, budgetLimit);
+  const auraClass = getAuraGradient(status);
+ 
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user") || sessionStorage.getItem("user");
@@ -22,10 +31,27 @@ const DashboardHome: React.FC = () => {
           <h1 className="text-4xl font-bold text-white">
             Welcome back, <span className="text-blue-200">{username}</span>!
           </h1>
-          <section className="bg-amber-400 p-6 rounded-lg shadow-md flex flex-col items-center space-y-4">
-            <h2 className="text-3xl text-center font-semibold text-white">Dashboard</h2>
-            <Gauge />
-          </section>
+
+            <section className="relative p-[2px] rounded-xl ">
+            {/* Aura Layer */}
+            <div className={`absolute inset-0 z-0 ${auraClass} blur-xl opacity-60 animate-auraPulse`} />
+
+            {/* Gauge Card Layer */}
+            <div className="relative z-10 flex flex-col items-center justify-center bg-amber-400 rounded-xl shadow-sm p-6 space-y-4">
+              <h2 className="text-3xl text-center font-semibold text-white">Dashboard</h2>
+              <RadialGaugeRanges budget={userBudget} currentBudgetValue={budgetLimit} />
+              <h2 className="text-2xl text-center font-semibold text-white">Budget Status</h2>
+              <ToggleSwitch
+              checked={false}
+              onChange={() => {}}
+              className="bg-gray-300 rounded-full p-2"
+            />
+            </div>
+         
+      
+
+            </section>
+
         </div>
 
         {/* Right column: Profile Card */}
@@ -35,43 +61,33 @@ const DashboardHome: React.FC = () => {
             className="absolute top-4 left-4 text-gray-700 hover:text-gray-900 transition-colors"
             aria-label="Settings"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={2}
-              stroke="currentColor"
-              className="w-6 h-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M12 15.75a3.75 3.75 0 100-7.5 3.75 3.75 0 000 7.5z"
-              />
-            </svg>
+            <img
+              src="/cog.png"
+              alt="Settings Icon"
+              className="w-10 h-10"
+            />
           </a>
-
-          <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-blue-400 shadow-inner">
+            <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-blue-400 shadow-inner">
             <img
               src="/accounticon.png"
               alt="Profile"
               className="w-full h-full object-cover"
             />
-          </div>
+            </div>
 
-          <h2 className="text-2xl font-bold text-gray-800">{fullName}</h2>
+            <h2 className="text-2xl font-bold text-gray-800">{fullName}</h2>
 
-          <div className="w-full bg-gray-100 p-4 rounded-lg text-center">
+            <div className="w-full bg-gray-100 p-4 rounded-lg text-center">
             <p className="text-sm text-gray-600">Spending Goal</p>
-            <p className="text-lg font-semibold text-blue-600">$5,000</p>
-          </div>
+            <p className="text-lg font-semibold text-blue-600">${budgetLimit}</p> 
+            </div>
 
-          <div className="w-full bg-gray-100 p-4 rounded-lg text-center">
+            <div className="w-full bg-gray-100 p-4 rounded-lg text-center">
             <p className="text-sm text-gray-600">Saved So Far</p>
             <p className="text-lg font-semibold text-blue-600">$2,500</p>
+            </div>
           </div>
-        </div>
-      </div>
+          </div>
 
       {/* Feature Cards Grid */}
       <div className="max-w-5xl mx-auto mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

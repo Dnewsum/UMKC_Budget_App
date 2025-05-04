@@ -25,7 +25,7 @@ createRoot(document.getElementById("root")!).render(
     <Router>
       <NavbarHome />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<DashboardHome />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/spending-breakdown" element={<SpendingBreakdown />} />
         <Route path="/dashboard" element={<DashboardHome />} />
