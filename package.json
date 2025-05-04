@@ -35,6 +35,7 @@
     "@tailwindcss/vite": "^4.1.4",
     "@types/axios": "^0.9.36",
     "@types/chart.js": "^2.9.41",
+    "@types/node": "^22.15.3",
     "@types/react": "^19.1.2",
     "@types/react-chartjs-2": "^2.0.2",
     "@types/react-dom": "^19.1.2",

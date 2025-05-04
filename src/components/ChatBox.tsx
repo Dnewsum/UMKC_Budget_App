@@ -8,6 +8,7 @@ interface Message {
 const ChatBox: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const sendMessage = async () => {
     if (!input.trim()) return;
@@ -15,53 +16,63 @@ const ChatBox: React.FC = () => {
     const userMsg: Message = { sender: "user", text: input };
     setMessages((prev) => [...prev, userMsg]);
     setInput("");
+    setLoading(true);
 
-    // 🔥 Replace this with actual OpenAI API call
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Authorization": `Bearer YOUR_OPENAI_API_KEY`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        model: "gpt-3.5-turbo",
-        messages: [
-          { role: "system", content: "You are a budget assistant." },
-          ...messages.map(m => ({
-            role: m.sender === "user" ? "user" : "assistant",
-            content: m.text
-          })),
-          { role: "user", content: input }
-        ]
-      }),
-    });
+    try {
+      const res = await fetch("http://localhost:5000/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ prompt: input }),
+      });
 
-    const data = await response.json();
-    const aiReply = data.choices[0].message.content;
+      if (!res.ok) throw new Error("Failed to get response from Gemini API");
 
-    setMessages((prev) => [...prev, { sender: "ai", text: aiReply }]);
+      const data = await res.json();
+      const aiReply: Message = { sender: "ai", text: data.response };
+
+      setMessages((prev) => [...prev, aiReply]);
+    } catch (err) {
+      setMessages((prev) => [
+        ...prev,
+        { sender: "ai", text: "⚠️ Failed to reach Gemini API." },
+      ]);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <div className="w-full max-w-2xl mx-auto max-h-90 bg-white shadow-lg rounded-xl p-4 h-[80vh] flex flex-col">
-      <div className="flex-1 overflow-y-auto space-y-3 mb-4">
+    <div className="mx-auto flex h-[80vh] max-h-90 w-full max-w-2xl flex-col rounded-xl bg-white p-4 shadow-lg">
+      <div className="mb-4 flex-1 space-y-3 overflow-y-auto">
         {messages.map((msg, idx) => (
-          <div key={idx} className={`max-w-[75%] px-4 py-2 rounded-xl text-white ${msg.sender === "user" ? "bg-blue-600 self-end" : "bg-gray-700 self-start"}`}>
+          <div
+            key={idx}
+            className={`max-w-[75%] rounded-xl px-4 py-2 text-white ${
+              msg.sender === "user"
+                ? "self-end bg-blue-600"
+                : "self-start bg-gray-700"
+            }`}
+          >
             {msg.text}
           </div>
         ))}
+        {loading && (
+          <div className="text-sm text-gray-500 italic">AI is typing...</div>
+        )}
       </div>
       <div className="flex gap-2">
         <input
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && sendMessage()}
-          className="flex-1 border border-gray-300 px-4 py-2 rounded-lg focus:outline-none"
+          className="flex-1 rounded-lg border border-gray-300 px-4 py-2 focus:outline-none"
           placeholder="Ask about budgeting or bonds..."
+          disabled={loading}
         />
         <button
           onClick={sendMessage}
-          className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
+          className="rounded-lg bg-blue-600 px-4 py-2 text-white transition hover:bg-blue-700 disabled:opacity-50"
+          disabled={loading}
         >
           Send
         </button>
