@@ -42,7 +42,7 @@ const ChatBox: React.FC = () => {
   };
 
   return (
-    <div className="mx-auto flex h-[80vh] max-h-90 w-full max-w-2xl flex-col rounded-xl bg-white p-4 shadow-lg">
+    <div className="mx-auto flex h-[80vh] max-h-190 w-full max-w-2xl flex-col rounded-xl bg-white p-4 shadow-lg">
       <div className="mb-4 flex-1 space-y-3 overflow-y-auto">
         {messages.map((msg, idx) => (
           <div

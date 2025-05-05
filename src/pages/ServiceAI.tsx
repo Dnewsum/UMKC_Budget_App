@@ -2,7 +2,7 @@ import React from "react";
 
 const ServiceAI: React.FC = () => {
   return (
-    <section className="/* full viewport height */ /* center horizontally, align to top */ /* padding around */ flex min-h-screen items-start justify-center bg-gradient-to-br from-blue-800 to-blue-400 px-4 py-12">
+    <section className="/* full viewport height */ /* center horizontally, align to top */ /* padding around */ flex min-h-screen items-start justify-center bg-gradient-to-br  px-4 py-12">
       <div className="flex w-full max-w-3xl items-center gap-10 rounded-3xl bg-white p-8 shadow-2xl md:flex-row md:p-16">
         {/* Image/Illustration */}
         <div className="flex-shrink-0">
