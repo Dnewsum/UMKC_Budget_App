@@ -6,27 +6,21 @@ const router = express.Router();
 
 router.post("/chat", async (req, res) => {
   const prompt = req.body.prompt;
-  const apiKey = process.env.GEMINI_API_KEY;
 
   try {
-    const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          contents: [{ parts: [{ text: prompt }] }],
-        }),
-      },
-    );
+    const response = await fetch("http://localhost:8080/gemini", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ prompt }),
+    });
 
     const data = await response.json();
-    const reply =
-      data.candidates?.[0]?.content?.parts?.[0]?.text || "No response";
+    const reply = data.reply || "No response from Java service";
+    console.log("Java service returned:", data);
     res.json({ response: reply });
   } catch (error) {
-    console.error("Gemini route error:", error);
-    res.status(500).json({ error: "Failed to connect to Gemini API" });
+    console.error("Error calling Java service:", error);
+    res.status(500).json({ error: "Failed to call Java Gemini microservice" });
   }
 });
 
