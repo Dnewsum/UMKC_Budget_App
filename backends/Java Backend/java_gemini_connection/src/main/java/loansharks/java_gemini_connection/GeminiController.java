@@ -22,7 +22,7 @@ public class GeminiController {
         
         // ===== CREATE LLM CONNECTION =====
 		String modelName = "gemma-3-27b-it"; // Specify the Gemma 3 model
-		String apiKey = "AIzaSyBOqwsbhtMy8psx554ccSfq4P_bbmFmlRU";
+		String apiKey = "USE API KEY HERE";
 		Client client = Client.builder().apiKey(apiKey).build();
 
         // ===== PAYLOAD ===== 
